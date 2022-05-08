@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmmyLuaUnityLintGenerator", "EmmyLuaUnityLintGenerator\EmmyLuaUnityLintGenerator.csproj", "{3517F61C-8ACF-48B8-83A5-F9A11A308FED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3517F61C-8ACF-48B8-83A5-F9A11A308FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3517F61C-8ACF-48B8-83A5-F9A11A308FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3517F61C-8ACF-48B8-83A5-F9A11A308FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3517F61C-8ACF-48B8-83A5-F9A11A308FED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C011DB1-309C-4F0A-9219-3D37CF69D0BB}
+	EndGlobalSection
+EndGlobal
