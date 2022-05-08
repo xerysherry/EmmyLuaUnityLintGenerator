@@ -152,7 +152,8 @@ public static partial class LintGenerator
         {
 
         }
-        existedSet.Add(type);
+        if(!existedSet.Contains(type))
+            existedSet.Add(type);
     }
 
     static HashSet<MethodInfo> GetPropertyGetSetMethod(bool isStatic, Type type)
@@ -273,7 +274,6 @@ public static partial class LintGenerator
 
     static void WriteMethod(StringBuilder writer, string classname, MethodInfo method, bool isStatic)
     {
-        
         var parameters = method.GetParameters();
         var parampairs = new List<(ParamDescriptor, string)>();
         var returnpairs = new List<(ParamDescriptor, string)>();
@@ -294,7 +294,7 @@ public static partial class LintGenerator
             match = true;
         }
 
-        if (desc != null)
+        if (desc != null && match)
         {
             var count = Math.Min(desc.@params.Count, parameters.Length);
             for (var i = 0; i < count; ++i)
@@ -339,10 +339,8 @@ public static partial class LintGenerator
             }
 
         }
-        DescWriteMethod(writer, desc,
-            match ? parampairs : null,
-            GetDescTypeName(method.ReturnType),
-            match ? returnpairs : null);
+        DescWriteMethod(writer, desc, parampairs,
+            GetDescTypeName(method.ReturnType), returnpairs);
 
         writer.Append(string.Format(isStatic ? "function {0}.{1}(" : "function {0}:{1}(",
             classname, method.Name));
@@ -368,6 +366,9 @@ public static partial class LintGenerator
 
     static void CreateEnum(Type type)
     {
+        if (existedSet.Contains(type))
+            return;
+
         var classname = GetReflectTypeName(type);
         TryNamespace(classname);
 
@@ -388,6 +389,10 @@ public static partial class LintGenerator
                 {
                     writer.AppendLine(string.Format("--- @class {0} {1}", classname, desc.summary));
                 }
+            }
+            else
+            {
+                writer.AppendLine(string.Format("--- @class {0}", classname));
             }
             writer.AppendLine(string.Format("{0} = {{", classname));
 
@@ -415,6 +420,7 @@ public static partial class LintGenerator
         }
 
         AddScript(classname, writer);
+        existedSet.Add(type);
     }
 
     static string GetDescTypeName(Type type)
